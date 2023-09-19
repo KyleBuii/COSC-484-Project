@@ -30,25 +30,38 @@ const Register = () => {
     };
   
     const renderHeightInput = () => {
-      if (heightUnit === 'm') {
-        return <input type="number" value={height} onChange={handleHeightChange} />;
-      } else if (heightUnit === 'ft') {
-        const feet = Math.floor(height);
-        const inches = Math.round((height - feet) * 12);
-        return (
-          <div>
-            <label>
-              Feet:
-              <input type="number" value={feet} onChange={(e) => setHeight(parseFloat(e.target.value) + (inches / 12))} />
-            </label>
-            <label>
-              Inches:
-              <input type="number" value={inches} onChange={(e) => setHeight(feet + (parseFloat(e.target.value) / 12))} />
-            </label>
-          </div>
-        );
-      }
-    };
+        if (heightUnit === 'm') {
+          return <input type="number" step="0.01" value={height} onChange={handleHeightChange} />;
+        } else if (heightUnit === 'ft') {
+          const feetMax = 7;  // Maximum feet value
+          const feetOptions = [];
+          for (let i = 0; i <= feetMax; i++) {
+            feetOptions.push(<option key={i} value={i}>{i} ft</option>);
+          }
+      
+          const inchesOptions = [];
+          for (let i = 0; i < 12; i++) {
+            inchesOptions.push(<option key={i} value={i}>{i} in</option>);
+          }
+      
+          return (
+            <div>
+              <label>
+                Feet:
+                <select value={Math.floor(height)} onChange={(e) => setHeight(parseFloat(e.target.value) + (height - Math.floor(height)))}>
+                  {feetOptions}
+                </select>
+              </label>
+              <label>
+                Inches:
+                <select value={Math.round((height - Math.floor(height)) * 12)} onChange={(e) => setHeight(Math.floor(height) + (parseFloat(e.target.value) / 12))}>
+                  {inchesOptions}
+                </select>
+              </label>
+            </div>
+          );
+        }
+      };
   
     return (
       <form onSubmit={handleSubmit}>
