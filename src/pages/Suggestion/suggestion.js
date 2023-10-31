@@ -15,6 +15,32 @@ function PopulateSelect(arr, element){
     };
 };
 
+/// Creates an exercise card
+function CreateCard(name, type, muscle, difficulty, equipment, instructions){
+    const div = document.createElement("div");
+    div.className = "card";
+    switch(difficulty){
+        case "beginner":
+            div.className = "card beginner";
+            break;
+        case "intermediate":
+            div.className = "card intermediate";
+            break;
+        case "expert":
+            div.className = "card expert";
+            break;
+        default:
+            div.className = "card";
+    };
+    div.innerHTML = `
+        <div className="space-ends">
+            <p>${type}, ${muscle}</p>
+        </div>
+        <h1>${name}</h1>
+    `;
+    document.getElementById("card-container").appendChild(div);
+};
+
 class Suggestion extends Component{
     constructor(props){
         super(props);
@@ -46,15 +72,25 @@ class Suggestion extends Component{
             }
         };
         try{
+            document.getElementById("card-container").innerHTML = "";
             const response = await fetch(url, options);
             const result = await response.json();
-            console.log(result)
+            for(const i in result){
+                CreateCard(
+                    result[i].name,
+                    result[i].type.charAt(0).toUpperCase() + result[i].type.slice(1),
+                    result[i].muscle.charAt(0).toUpperCase() + result[i].muscle.slice(1),
+                    result[i].difficulty,
+                    result[i].equipment,
+                    result[i].instructions
+                );
+            };
         }catch(err){
             console.error(err);
         };
     };
     componentDidMount(){
-        const type = ["Cardio", "Olympic Weightlifting", "Plyometrics"
+        const type = ["Cardio", "Plyometrics"
             , "Powerlifting", "Strength", "Stretching", "Strongman"];     
         const muscle = ["Abdominals", "Abductors", "Adductors", "Biceps"
             , "Calves", "Chest", "Forearms", "Glutes", "Hamstrings"
@@ -68,40 +104,44 @@ class Suggestion extends Component{
     };  
     render(){
         return(
-            <div className="space-evenly">
-                {/* Search */}
-                <input id="suggestion-search"
-                    type="text"
-                    name="search"
-                    placeholder="Searh exercise"></input>
-                {/* Type */}
-                <div>
-                    <label htmlFor="suggestion-select-type">Type: </label>
-                    <select id="suggestion-select-type"
-                        name="type"
-                        defaultValue="">
-                        <option value="">Any</option>
-                    </select>
+            <div>
+                <div className="space-evenly">
+                    {/* Search */}
+                    <input id="suggestion-search"
+                        type="text"
+                        name="search"
+                        placeholder="Searh exercise"></input>
+                    {/* Type */}
+                    <div>
+                        <label htmlFor="suggestion-select-type">Type: </label>
+                        <select id="suggestion-select-type"
+                            name="type"
+                            defaultValue="">
+                            <option value="">Any</option>
+                        </select>
+                    </div>
+                    {/* Muscle */}
+                    <div>
+                        <label htmlFor="suggestion-select-muscle">Muscle: </label>
+                        <select id="suggestion-select-muscle"
+                            name="muscle"
+                            defaultValue="">
+                            <option value="">Any</option>
+                        </select>
+                    </div>
+                    {/* Difficulty */}
+                    <div>
+                        <label htmlFor="suggestion-select-difficulty">Difficulty: </label>
+                        <select id="suggestion-select-difficulty"
+                            name="difficulty"
+                            defaultValue="">
+                            <option value="">Any</option>
+                        </select>
+                    </div>
+                    <button onClick={this.handleSubmit}>Search</button>
                 </div>
-                {/* Muscle */}
-                <div>
-                    <label htmlFor="suggestion-select-muscle">Muscle: </label>
-                    <select id="suggestion-select-muscle"
-                        name="muscle"
-                        defaultValue="">
-                        <option value="">Any</option>
-                    </select>
-                </div>
-                {/* Difficulty */}
-                <div>
-                    <label htmlFor="suggestion-select-difficulty">Difficulty: </label>
-                    <select id="suggestion-select-difficulty"
-                        name="difficulty"
-                        defaultValue="">
-                        <option value="">Any</option>
-                    </select>
-                </div>
-                <button onClick={this.handleSubmit}>Search</button>
+                {/* Information cards */}
+                <div id="card-container"></div>
             </div>
         );
     };
