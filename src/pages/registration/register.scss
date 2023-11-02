@@ -1,0 +1,78 @@
+// Define some variables for reusability
+$primaryColor: #3498db;
+$backgroundColor: #7EA16B;
+
+.register-form {  
+  max-width: 500px;
+  margin: auto auto;
+  padding: 20px;
+  background-color: $backgroundColor;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;    
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: auto;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+  }
+
+  button {
+    background-color: $primaryColor;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: darken($primaryColor, 10%);
+    }
+  }
+
+  .height-input {
+    display: flex;
+    align-items: center;
+
+    select {
+      flex: 1;
+      margin-left: 10px;
+    }
+  }
+}
+
+.weight-input{
+  display: flex;
+  align-items: center;
+  
+  select{
+    flex: 1;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  input[type="number"]{
+    width: 70%;
+  }
+
+}
+

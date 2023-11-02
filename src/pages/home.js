@@ -1,9 +1,10 @@
-function Home(){
-    return(
-    <>
-    <h1>Welcome to #!@$#*&</h1>
 
-    </>
+
+function Home() {
+    return (
+        <>
+           <h1>Main Page</h1>
+        </>
     )
 }
 

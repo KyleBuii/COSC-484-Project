@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './register.scss';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -64,7 +65,7 @@ const Register = () => {
       };
   
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} class='register-form' id='register' >
         <label>
           Name:
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -77,12 +78,15 @@ const Register = () => {
         <br />
         <label>
           Weight:
+          <div className='weight-input'>
           <input type="number" value={weight} onChange={handleWeightChange} />
           <select value={weightUnit} onChange={handleWeightUnitChange}>
             <option value="kg">kg</option>
             <option value="lbs">lbs</option>
           </select>
+          </div>
         </label>
+        
         <br />
         <label>
           Height:
