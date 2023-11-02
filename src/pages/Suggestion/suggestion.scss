@@ -1,0 +1,40 @@
+.space-evenly{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    margin: 1em;
+}
+
+.space-ends{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card{
+    max-width: 49em;
+    padding: 1.5rem;
+    background-color: rgb(89, 111, 98);
+    border-radius: 30px;
+    p{
+        margin: 0rem;
+    }
+    h1{
+        margin: 0.3rem 0rem 1.5rem;
+    }
+    &.beginner{
+        background-color: rgb(126, 161, 107);
+    }
+    &.intermediate{
+        background-color: rgb(28, 49, 68);
+    }
+    &.expert{
+        background-color: rgb(112, 22, 30);
+    }
+}
+
+#card-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
