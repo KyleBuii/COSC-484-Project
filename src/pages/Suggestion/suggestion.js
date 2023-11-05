@@ -1,5 +1,6 @@
-import { Component } from "react";
 import './suggestion.scss';
+import { Component } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 /// Fills a select with the array
 function PopulateSelect(arr, element){
@@ -10,7 +11,7 @@ function PopulateSelect(arr, element){
         e.textContent = opt;
         e.value = opt
             .toLowerCase()
-            .replace(" ", "-");
+            .replace(" ", "_");
         select.appendChild(e);
     };
 };
@@ -45,14 +46,10 @@ class Suggestion extends Component{
     constructor(props){
         super(props);
         this.state = {
-            name: "",               /// Results
-            type: "",
-            muscle: "",
-            equipment: "",
-            difficulty: "",
-            instructions: ""
+            offset: 0
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.pageTurn = this.pageTurn.bind(this);
     };
     async handleSubmit(){
         const search = document.getElementById("suggestion-search").value
@@ -63,7 +60,8 @@ class Suggestion extends Component{
             + 'name=' + search + '&'
             + 'type=' + type + '&'
             + 'muscle=' + muscle + '&'
-            + 'difficulty=' + difficulty;
+            + 'difficulty=' + difficulty + '&'
+            + 'offset=' + this.state.offset;
         const options = {
             method: 'GET',
             headers: {
@@ -78,7 +76,9 @@ class Suggestion extends Component{
             for(const i in result){
                 CreateCard(
                     result[i].name,
-                    result[i].type.charAt(0).toUpperCase() + result[i].type.slice(1),
+                    result[i].type.charAt(0).toUpperCase() + result[i].type.slice(1).replace(/[_]\w/, (x) => {
+                        return " " + x.slice(1).toUpperCase();
+                    }),
                     result[i].muscle.charAt(0).toUpperCase() + result[i].muscle.slice(1),
                     result[i].difficulty,
                     result[i].equipment,
@@ -89,8 +89,29 @@ class Suggestion extends Component{
             console.error(err);
         };
     };
+    pageTurn(direction){
+        if((this.state.offset >= 0 && direction === "right")
+            || (this.state.offset >= 10 && direction === "left")){
+            var numberOffset = 0;
+            switch(direction){
+                case "left":
+                    numberOffset = -10;
+                    break;
+                case "right":
+                    numberOffset = 10;
+                    break;
+                default:
+                    break;
+            };
+            this.setState(prevState => ({
+                offset: prevState.offset + numberOffset
+            }), () => {
+                this.handleSubmit();
+            });
+        };
+    };
     componentDidMount(){
-        const type = ["Cardio", "Plyometrics"
+        const type = ["Cardio", "Olympic Weightlifting", "Plyometrics"
             , "Powerlifting", "Strength", "Stretching", "Strongman"];     
         const muscle = ["Abdominals", "Abductors", "Adductors", "Biceps"
             , "Calves", "Chest", "Forearms", "Glutes", "Hamstrings"
@@ -142,6 +163,18 @@ class Suggestion extends Component{
                 </div>
                 {/* Information cards */}
                 <div id="card-container"></div>
+                {/* Page Buttons */}
+                <div className="page-number-container">
+                    <button className="btn-inverse"
+                        onClick={() => this.pageTurn("left")}>
+                        <FaArrowLeft/>
+                    </button>
+                    <p className="page-number">{this.state.offset/10}</p>
+                    <button className="btn-inverse"
+                        onClick={() => this.pageTurn("right")}>
+                        <FaArrowRight/>    
+                    </button>
+                </div>
             </div>
         );
     };
