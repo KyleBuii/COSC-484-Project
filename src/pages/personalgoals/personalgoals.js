@@ -31,8 +31,8 @@ function Personalgoals() {
   }
 
   function deleteGoal(id) {
-    setGoals((goals) => {
-      return goals.filter((goal) => goal.id == id);
+    setGoals((newGoals) => {
+      return newGoals.filter((goal) => goal.id !== id);
     });
   }
 
@@ -48,7 +48,7 @@ function Personalgoals() {
           name: newGoalName,
           start: newGoalStart,
           target: newGoalEnd,
-          completed: false,
+          checked: false,
         },
       ];
     });
