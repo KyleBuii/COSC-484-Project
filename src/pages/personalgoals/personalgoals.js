@@ -15,10 +15,10 @@ function Personalgoals() {
   }
 
   function toggleComplete(id, completed) {
-    setGoals((currentList) => {
-      return currentList.map((goal) => {
+    setGoals((goals) => {
+      return goals.map((goal) => {
         if (goal === id) {
-          return { ...currentList, completed };
+          return { ...goals, completed };
         }
 
         return goal;
@@ -31,8 +31,8 @@ function Personalgoals() {
   }
 
   function deleteGoal(id) {
-    setGoals((currentList) => {
-      return currentList.filter((goal) => goal.id == id);
+    setGoals((goals) => {
+      return goals.filter((goal) => goal.id == id);
     });
   }
 
@@ -40,14 +40,14 @@ function Personalgoals() {
     e.preventDefault();
 
     //gets the text from the form to create user goals
-    setGoals((currentList) => {
+    setGoals((newGoals) => {
       return [
-        ...currentList,
+        ...newGoals,
         {
           id: getRandomNumber(1, 10000), //link to user account later
           name: newGoalName,
-          start: newGoalSDate,
-          target: newGoalEDate,
+          start: newGoalStart,
+          target: newGoalEnd,
           completed: false,
         },
       ];
@@ -95,14 +95,14 @@ function Personalgoals() {
         {goals.map((goals) => {
           return (
             <li key={goals.id}>
-              <label>
-                <input
-                  type=" checkbox"
-                  checked={goals.completed}
-                  onChange={(e) => toggleComplete(goals.id, e.target.checked)}
-                />
-                goals.name goals.start goals.target
-              </label>
+              <input
+                type="checkbox"
+                checked={goals.completed}
+                onChange={(e) => toggleComplete(goals.id, e.target.checked)}
+              />
+              <b>{goals.name}: </b>
+              <label>Start:{goals.start} </label>
+              <label>Target:{goals.target}</label>
               <button onClick={() => editGoal(goals.id)} className="editButton">
                 edit
               </button>
