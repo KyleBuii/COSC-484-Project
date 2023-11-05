@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./personalgoals.scss";
 
 function Personalgoals() {
   //user input collection
