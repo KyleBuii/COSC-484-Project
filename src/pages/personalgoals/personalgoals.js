@@ -3,8 +3,8 @@ import { useState } from "react";
 function Personalgoals() {
   //user input collection
   const [newGoalName, setName] = useState("");
-  const [newGoalSDate, setSDate] = useState("");
-  const [newGoalEDate, setEDate] = useState("");
+  const [newGoalStart, setStart] = useState("");
+  const [newGoalEnd, setEnd] = useState("");
 
   //stores created goals in an array
   const [goals, setGoals] = useState([]);
@@ -55,8 +55,8 @@ function Personalgoals() {
 
     //resets the text fields
     setName("");
-    setSDate("");
-    setEDate("");
+    setStart("");
+    setEnd("");
   }
 
   return (
@@ -66,22 +66,22 @@ function Personalgoals() {
         <div className="formRow">
           <label htmlFor="goalName">Name</label>
           <input
-            value={setName}
+            value={newGoalName}
             onChange={(e) => setName(e.target.value)}
             type="text"
             id="goalName"
           />
           <label htmlFor="goalStartDate">Start Date</label>
           <input
-            value={setSDate}
-            onChange={(e) => setSDate(e.target.value)}
+            value={newGoalStart}
+            onChange={(e) => setStart(e.target.value)}
             type="text"
             id="goalStartDate"
           />
           <label htmlFor="goalEndDate">End Date</label>
           <input
-            value={setEDate}
-            onChange={(e) => setEDate(e.target.value)}
+            value={newGoalEnd}
+            onChange={(e) => setEnd(e.target.value)}
             type="text"
             id="goalEndDate"
           />
