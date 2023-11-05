@@ -16,28 +16,46 @@ export const NavLink = styled(Link)`
     color: #808080;
     display: flex;
     align-items: center;
-
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+    &.active{
+        color #000000;
+    }
 `;
 
 
 export const Bars = styled(FaBars)`
     color: #808080;
-    
+    display: none;
+    @media screen and (max-width: 768px){
+        display: block;
+        postition: absolute;
+        top: 0;
+        right: 0;
+        transform: translate( -100%, 75%);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
 `;
 
 export const NavMenu = styled.div`
-    color: #808919;
     display: flex;
     align-items: center;
     margin-right: 24px; 
-    
+    @media screen and (max-width: 768px){
+        display: none;
+    }
 `;
 
 export const NavBtn = styled.nav`
-    color: #808080;
     display: flex;
     align-items: center;
-    margin-right: 24px; 
+    margin-right: 24px;
+    @media screen and (max-width: 768px){
+        display: none;
+    } 
 `;
 
 //Link inside a nav button (Not a tab)
