@@ -30,3 +30,4 @@ REACT_APP_SUGGESTION_API_KEY = '[YOUR_API_KEY]'
 10. Save
 11. Restart Visual Studio Code
 12. Finished
+>>>>>>> 1d40895d41a30d62b0dfd56cb81997c7d023bdb2
