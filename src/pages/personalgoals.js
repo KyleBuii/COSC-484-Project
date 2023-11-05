@@ -26,6 +26,10 @@ function Personalgoals() {
     });
   }
 
+  function editGoal() {
+    //create a pop up to overwrite seleted goal passing in an id
+  }
+
   function deleteGoal() {
     setGoals((currentList) => {
       return currentList.filter((goal) => goal.id == id);
@@ -99,11 +103,14 @@ function Personalgoals() {
                 />
                 goals.name goals.start goals.target
               </label>
+              <button onClick={() => editGoal(goals.id)} className="editButton">
+                edit
+              </button>
               <button
                 onClick={() => deleteGoal(goals.id)}
-                className="editButton"
+                className="deleteButton"
               >
-                edit
+                delete
               </button>
             </li>
           );
