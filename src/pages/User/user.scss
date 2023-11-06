@@ -2,9 +2,13 @@
 $primaryColor: #3498db;
 $backgroundColor: #7EA16B;
 
+body{
+  background-color: #70161e;
+}
+
 .register-form {  
   max-width: 500px;
-  margin: auto auto;
+  margin: 100px auto;
   padding: 20px;
   background-color: $backgroundColor;
   border: 1px solid #ccc;
