@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 //Exporting a styled nav component with preset style
 export const Nav = styled.nav`
-    background: #63d471;
+    background: #1c3144;
     height: 85px;
     display: flex;
     justify-content" space-between;
