@@ -50,7 +50,7 @@ class Suggestion extends Component{
         const divCardInfo = document.createElement("div");
         divCardInfo.className = "card-information";
         divCardInfo.innerHTML = `
-            <p>Equipment: ${equipment.charAt(0).toUpperCase() + equipment.slice(1)}</p>
+            <p>Equipment: ${equipment.charAt(0).toUpperCase() + equipment.slice(1).replace("_", " ")}</p>
             <p>Instructions: ${instructions}</p>
         `;
         divCardName.appendChild(divCardInfo);
