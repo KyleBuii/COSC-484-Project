@@ -8,11 +8,13 @@ class Navbar extends Component{
                 <Bars/>
 
                 <NavMenu>
-                    <NavLink to = "/suggestion">Suggestion</NavLink>
-                    
+                    <NavLink to = "/suggestion">Suggestion</NavLink>                    
+                </NavMenu>
+                <NavMenu>
+                    <NavLink to = "/personalgoals">Personal Goals</NavLink>                    
                 </NavMenu>
                 <NavBtn>
-                    <NavBtnLink to="/register">Register</NavBtnLink>
+                    <NavBtnLink to="/signin">Sign In</NavBtnLink>
                 </NavBtn>
             </Nav>
         </>

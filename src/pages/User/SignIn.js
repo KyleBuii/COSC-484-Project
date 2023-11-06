@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './register.scss';
+import './user.scss';
 
-const Register = () => {
+const SignIn = () => {
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
     const [weight, setWeight] = useState('');
@@ -104,4 +104,4 @@ const Register = () => {
   
   
 
-export default Register;
+export default SignIn;
