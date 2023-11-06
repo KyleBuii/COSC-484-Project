@@ -16,52 +16,63 @@ function PopulateSelect(arr, element){
     };
 };
 
-/// Creates an exercise card
-function CreateCard(name, type, muscle, difficulty, equipment, instructions){
-    const div = document.createElement("div");
-    div.className = "card";
-    switch(difficulty){
-        case "beginner":
-            div.className = "card beginner";
-            break;
-        case "intermediate":
-            div.className = "card intermediate";
-            break;
-        case "expert":
-            div.className = "card expert";
-            break;
-        default:
-            div.className = "card";
-    };
-    div.innerHTML = `
-        <div className="space-ends">
-            <p>${type}, ${muscle}</p>
-        </div>
-        <h1>${name}</h1>
-    `;
-    document.getElementById("card-container").appendChild(div);
-};
-
 class Suggestion extends Component{
     constructor(props){
         super(props);
         this.state = {
+            cards: {},
             offset: 0
         };
+        this.createCard = this.createCard.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.pageTurn = this.pageTurn.bind(this);
     };
-    async handleSubmit(){
+    /// Creates an exercise card
+    createCard(name, type, muscle, difficulty, equipment, instructions){
+        const divCardName = document.createElement("div");
+        switch(difficulty){
+            case "beginner":
+                divCardName.className = "card beginner";
+                break;
+            case "intermediate":
+                divCardName.className = "card intermediate";
+                break;
+            case "expert":
+                divCardName.className = "card expert";
+                break;
+            default:
+                divCardName.className = "card";
+        };
+        divCardName.innerHTML = `
+            <p>${type}, ${muscle}</p>
+            <h1>${name}</h1>
+        `;
+        const divCardInfo = document.createElement("div");
+        divCardInfo.className = "card-information";
+        divCardInfo.innerHTML = `
+            <p>Equipment: ${equipment.charAt(0).toUpperCase() + equipment.slice(1)}</p>
+            <p>Instructions: ${instructions}</p>
+        `;
+        divCardName.appendChild(divCardInfo);
+        document.getElementById("card-container").appendChild(divCardName);
+    };
+    async handleSubmit(isPageTurn){
+        if(!isPageTurn && this.state.offset !== 0){
+            this.setState({
+                offset: 0
+            });
+        }
         const search = document.getElementById("suggestion-search").value
         const type = document.getElementById("suggestion-select-type").value
         const muscle = document.getElementById("suggestion-select-muscle").value
         const difficulty = document.getElementById("suggestion-select-difficulty").value
+        const offset = (!isPageTurn && this.state.offset !== 0) ? 0 : this.state.offset;
         const url = 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?'
             + 'name=' + search + '&'
             + 'type=' + type + '&'
             + 'muscle=' + muscle + '&'
             + 'difficulty=' + difficulty + '&'
-            + 'offset=' + this.state.offset;
+            + 'offset=' + offset;
         const options = {
             method: 'GET',
             headers: {
@@ -73,17 +84,22 @@ class Suggestion extends Component{
             document.getElementById("card-container").innerHTML = "";
             const response = await fetch(url, options);
             const result = await response.json();
+            const cardNames = {};
             for(const i in result){
-                CreateCard(
+                this.createCard(
                     result[i].name,
                     result[i].type.charAt(0).toUpperCase() + result[i].type.slice(1).replace(/[_]\w/, (x) => {
                         return " " + x.slice(1).toUpperCase();
                     }),
-                    result[i].muscle.charAt(0).toUpperCase() + result[i].muscle.slice(1),
+                    result[i].muscle.charAt(0).toUpperCase() + result[i].muscle.slice(1).replace(/[_]\w/, (x) => {
+                        return " " + x.slice(1).toUpperCase();
+                    }),
                     result[i].difficulty,
                     result[i].equipment,
                     result[i].instructions
                 );
+                const currCard = result[i].name.toLowerCase().replace(" ", "-");
+                cardNames[currCard] = false;
             };
         }catch(err){
             console.error(err);
@@ -106,7 +122,7 @@ class Suggestion extends Component{
             this.setState(prevState => ({
                 offset: prevState.offset + numberOffset
             }), () => {
-                this.handleSubmit();
+                this.handleSubmit(true);
             });
         };
     };
@@ -125,15 +141,15 @@ class Suggestion extends Component{
     };  
     render(){
         return(
-            <div>
-                <div className="space-evenly">
+            <div className="center">
+                <div className="search-bar">
                     {/* Search */}
                     <input id="suggestion-search"
                         type="text"
                         name="search"
                         placeholder="Searh exercise"></input>
                     {/* Type */}
-                    <div>
+                    <div className="label-and-input">
                         <label htmlFor="suggestion-select-type">Type: </label>
                         <select id="suggestion-select-type"
                             name="type"
@@ -142,7 +158,7 @@ class Suggestion extends Component{
                         </select>
                     </div>
                     {/* Muscle */}
-                    <div>
+                    <div className="label-and-input">
                         <label htmlFor="suggestion-select-muscle">Muscle: </label>
                         <select id="suggestion-select-muscle"
                             name="muscle"
@@ -151,7 +167,7 @@ class Suggestion extends Component{
                         </select>
                     </div>
                     {/* Difficulty */}
-                    <div>
+                    <div className="label-and-input">
                         <label htmlFor="suggestion-select-difficulty">Difficulty: </label>
                         <select id="suggestion-select-difficulty"
                             name="difficulty"
@@ -159,7 +175,8 @@ class Suggestion extends Component{
                             <option value="">Any</option>
                         </select>
                     </div>
-                    <button onClick={this.handleSubmit}>Search</button>
+                    <button className="btn-search" 
+                        onClick={() => this.handleSubmit(false)}>Search</button>
                 </div>
                 {/* Information cards */}
                 <div id="card-container"></div>
