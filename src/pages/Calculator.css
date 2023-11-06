@@ -1,0 +1,15 @@
+.Calculator{
+  text-align: center;
+  
+}
+
+.CalculatorForm {
+  width: 550px;
+ height: 450px;
+ margin: auto;
+ position: relative;
+}
+
+.btn{
+  size: 800px;
+}
