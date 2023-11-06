@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 //Exporting a styled nav component with preset style
 export const Nav = styled.nav`
-    background: #666666;
+    background: #63d471;
     height: 85px;
     display: flex;
     justify-content" space-between;
@@ -60,8 +60,9 @@ export const NavBtn = styled.nav`
 
 //Link inside a nav button (Not a tab)
 export const NavBtnLink = styled(Link)`
-    background: #635630;
-    color: #000002;
+    background: #808080;
+    color: #000000;
+    padding: 10px 20px;
     outline: none;
     border: none;
     cursor: pointer;

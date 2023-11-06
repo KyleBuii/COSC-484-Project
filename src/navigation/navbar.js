@@ -14,7 +14,8 @@ class Navbar extends Component{
                     <NavLink to = "/personalgoals">Personal Goals</NavLink>                    
                 </NavMenu>
                 <NavBtn>
-                    <NavBtnLink to="/signin">Sign In</NavBtnLink>
+                    <NavBtnLink to="/signin">Sign In
+                    </NavBtnLink>
                 </NavBtn>
             </Nav>
         </>
