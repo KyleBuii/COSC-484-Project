@@ -15,8 +15,9 @@ class Navbar extends Component {
                 <Nav>
                     <Bars />
                     <NavMenu>
-                        <NavLink to="/suggestion" activeStyle>Suggestion</NavLink>
                         <NavLink to="/personalgoals" activeStyle>Personal Goals</NavLink>
+                        <NavLink to="/suggestion" activeStyle>Suggestion</NavLink>
+                        <NavLink to="/calculator" activeStyle>Fitness Calculator</NavLink>
                     </NavMenu>
                     <NavBtn>
                         <NavBtnLink to="/signin">Sign In</NavBtnLink>
