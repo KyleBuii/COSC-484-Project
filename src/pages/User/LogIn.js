@@ -10,8 +10,8 @@ const LogIn = () => {
             <label for="user">Username:</label>
             <input type="text" value={user} onChange={(e) =>setUser(e.target.value)}/>
             <label for="password">Password:</label>
-            <input type="password" value={password} onChange={(e) =>setPassword(e.target.value)}/>
-            <input type="submit"></input>
+            <input type="password" value={password} onChange={(e) =>setPassword(e.target.value)}/><br/>
+            <button type="submit">Log In</button>
         </form>
         </>
     )

@@ -12,7 +12,6 @@ export const Nav = styled.nav`
   padding: 0.2rem calc((100vw - 1000px) / 2);
   z-index: 12;
   
-  
 `;
 
 export const NavLink = styled(Link)`
@@ -53,7 +52,7 @@ export const NavMenu = styled.div`
 
 export const NavAuth = styled.div`
   display: flex;
-  align-items: right;
+  align-items: stretch;
   @media screen and (max-width: 768px){
     display: none;
   }
@@ -62,7 +61,7 @@ export const NavAuth = styled.div`
 export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
-  
+  margin-left:30px;
   @media screen and (max-width:768px){
     display: none;
   }
