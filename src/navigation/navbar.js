@@ -6,6 +6,7 @@ import {
     NavMenu,
     Bars,
     NavLink,
+    NavAuth,
 } from "./navcomponents";
 
 class Navbar extends Component {
@@ -19,9 +20,16 @@ class Navbar extends Component {
                         <NavLink to="/suggestion" activeStyle>Suggestion</NavLink>
                         <NavLink to="/calculator" activeStyle>Fitness Calculator</NavLink>
                     </NavMenu>
+
+                    <NavAuth>
+                    <NavBtn>
+                        <NavBtnLink to="/login">Log In</NavBtnLink>
+                    </NavBtn>
+
                     <NavBtn>
                         <NavBtnLink to="/signin">Sign In</NavBtnLink>
                     </NavBtn>
+                    </NavAuth>
                 </Nav>
             </>
         )

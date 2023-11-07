@@ -15,15 +15,6 @@ export const Nav = styled.nav`
   
 `;
 
-export const NavContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-`;
-
 export const NavLink = styled(Link)`
   color: #808080;
   text-decoration: none;
@@ -41,7 +32,7 @@ export const Bars = styled(FaBars)`
     display: block;
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     transform: translate(-100%, 75%);
     font-size: 1.8rem;
     cursor: pointer;
@@ -57,10 +48,18 @@ export const NavMenu = styled.div`
   }
 `;
 
+export const NavAuth = styled.div`
+  display: flex;
+  align-items: right;
+  @media screen and (max-width: 768px){
+    display: none;
+  }
+
+`
 export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
-  margin-right: 24px; 
+  
   @media screen and (max-width:768px){
     display: none;
   }
@@ -76,7 +75,7 @@ export const NavBtnLink = styled(Link)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  margin-left: 400px;
+
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;

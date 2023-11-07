@@ -21,8 +21,8 @@ const SignIn = () => {
       setWeightUnit(event.target.value);
     };
   
-    const handleHeightUnitChange = (event) => {
-      setHeightUnit(event.target.value);
+    const handleHeightUnitChange = (val) => {
+      setHeightUnit(val);
     };
   
     const handleSubmit = (event) => {
@@ -31,6 +31,7 @@ const SignIn = () => {
     };
   
     const renderHeightInput = () => {
+      
         if (heightUnit === 'm') {
           return <input type="number" step="0.01" value={height} onChange={handleHeightChange} />;
         } else if (heightUnit === 'ft') {
@@ -65,7 +66,7 @@ const SignIn = () => {
       };
   
     return (
-      <form onSubmit={handleSubmit} class='register-form' id='register' >
+      <form onSubmit={handleSubmit} class='user-form' id='register' >
         <label>
           Name:
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -90,11 +91,14 @@ const SignIn = () => {
         <br />
         <label>
           Height:
+          <div>
+          <label for="feet">Feet</label>
+          <input type="radio" id="feet" name='heightunit' value="ft" onChange={(e) => handleHeightUnitChange(e.target.value)} checked = {heightUnit === 'ft'}/>
+          <label for="meter">Meters</label>
+          <input type="radio" id="meters" name='heightunit' value="m" onChange={(e) => handleHeightUnitChange(e.target.value)} checked = {heightUnit === 'm'}/>
+          </div>
           {renderHeightInput()}
-          <select value={heightUnit} onChange={handleHeightUnitChange}>
-            <option value="m">m</option>
-            <option value="ft">ft</option>
-          </select>
+          
         </label>
         <br />
         <button type="submit">Submit</button>
