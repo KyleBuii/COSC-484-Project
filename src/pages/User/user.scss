@@ -5,7 +5,7 @@ $backgroundColor: #7EA16B;
 .user-form {  
   max-width: 500px;
   margin: 100px auto;
-  padding: 20px;
+  padding: 40px;
   background-color: $backgroundColor;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -77,3 +77,12 @@ $backgroundColor: #7EA16B;
 
 }
 
+.radiogroup{
+  display: flex;
+}
+
+.radio{
+  flex: 1 0 auto;
+  flex-direction: column;
+
+}
