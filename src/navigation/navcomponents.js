@@ -16,12 +16,15 @@ export const Nav = styled.nav`
 `;
 
 export const NavLink = styled(Link)`
-  color: #808080;
+  color: white;
   text-decoration: none;
   padding: 0 1rem;
   cursor: pointer;
   &.active {
-    color: #000000;
+    color: gray;
+  }
+  &:hover {
+    color: #d4d4d4;
   }
 `;
 
@@ -67,7 +70,7 @@ export const NavBtn = styled.nav`
 
 // Link inside a nav button (Not a tab)
 export const NavBtnLink = styled(Link)`
-  background: #808080;
+  background: white;
   color: #000000;
   padding: 10px 20px;
   outline: none;
@@ -78,8 +81,7 @@ export const NavBtnLink = styled(Link)`
 
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #808080;
+    background: #d4d4d4;
   }
   border-radius: 4px;
 `;
