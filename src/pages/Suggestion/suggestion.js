@@ -127,6 +127,7 @@ class Suggestion extends Component{
         };
     };
     componentDidMount(){
+        this.handleSubmit(false);
         const type = ["Cardio", "Olympic Weightlifting", "Plyometrics"
             , "Powerlifting", "Strength", "Stretching", "Strongman"];     
         const muscle = ["Abdominals", "Abductors", "Adductors", "Biceps"
