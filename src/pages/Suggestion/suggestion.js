@@ -1,5 +1,5 @@
 import './suggestion.scss';
-import { Component } from "react";
+import { Component, useContext } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 /// Fills a select with the array
@@ -20,7 +20,6 @@ class Suggestion extends Component{
     constructor(props){
         super(props);
         this.state = {
-            cards: {},
             offset: 0
         };
         this.createCard = this.createCard.bind(this);
@@ -29,32 +28,52 @@ class Suggestion extends Component{
     };
     /// Creates an exercise card
     createCard(name, type, muscle, difficulty, equipment, instructions){
+        const divCardContainer = document.createElement("div");
+        /// Front of card
         const divCardName = document.createElement("div");
-        switch(difficulty){
-            case "beginner":
-                divCardName.className = "card beginner";
-                break;
-            case "intermediate":
-                divCardName.className = "card intermediate";
-                break;
-            case "expert":
-                divCardName.className = "card expert";
-                break;
-            default:
-                divCardName.className = "card";
-        };
         divCardName.innerHTML = `
             <p>${type}, ${muscle}</p>
             <h1>${name}</h1>
         `;
+        divCardName.style.borderRadius = "30px";
+        divCardName.style.borderBottomWidth = "4px";
+        /// Back of card
         const divCardInfo = document.createElement("div");
-        divCardInfo.className = "card-information";
+        divCardInfo.style.display = "none";
         divCardInfo.innerHTML = `
             <p>Equipment: ${equipment.charAt(0).toUpperCase() + equipment.slice(1).replace("_", " ")}</p>
             <p>Instructions: ${instructions}</p>
         `;
-        divCardName.appendChild(divCardInfo);
-        document.getElementById("card-container").appendChild(divCardName);
+        switch(difficulty){
+            case "beginner":
+                divCardName.className = "card beginner";
+                divCardInfo.className = "card beginner information";
+                break;
+            case "intermediate":
+                divCardName.className = "card intermediate";
+                divCardInfo.className = "card intermediate information";
+                break;
+            case "expert":
+                divCardName.className = "card expert";
+                divCardInfo.className = "card expert information";
+                break;
+            default:
+                divCardName.className = "card";
+                divCardInfo.className = "card information";
+        };
+        divCardContainer.appendChild(divCardName);
+        divCardContainer.appendChild(divCardInfo);
+        divCardName.onclick = () => {
+            (divCardName.style.borderBottomWidth === "4px") ? divCardName.style.borderBottomWidth = "0px" : divCardName.style.borderBottomWidth = "4px";
+            (divCardName.style.borderRadius === "30px") ? divCardName.style.borderRadius = "30px 30px 0px 0px" : divCardName.style.borderRadius = "30px";
+            (divCardInfo.style.display === "none") ? divCardInfo.style.display = "block" : divCardInfo.style.display = "none";
+        };
+        divCardInfo.onclick = () => {
+            (divCardName.style.borderBottomWidth === "4px") ? divCardName.style.borderBottomWidth = "0px" : divCardName.style.borderBottomWidth = "4px";
+            (divCardName.style.borderRadius === "30px") ? divCardName.style.borderRadius = "30px 30px 0px 0px" : divCardName.style.borderRadius = "30px";
+            (divCardInfo.style.display === "none") ? divCardInfo.style.display = "block" : divCardInfo.style.display = "none";
+        };
+        document.getElementById("cards-container").appendChild(divCardContainer);
     };
     async handleSubmit(isPageTurn){
         if(!isPageTurn && this.state.offset !== 0){
@@ -81,10 +100,9 @@ class Suggestion extends Component{
             }
         };
         try{
-            document.getElementById("card-container").innerHTML = "";
+            document.getElementById("cards-container").innerHTML = "";
             const response = await fetch(url, options);
             const result = await response.json();
-            const cardNames = {};
             for(const i in result){
                 this.createCard(
                     result[i].name,
@@ -98,8 +116,6 @@ class Suggestion extends Component{
                     result[i].equipment,
                     result[i].instructions
                 );
-                const currCard = result[i].name.toLowerCase().replace(" ", "-");
-                cardNames[currCard] = false;
             };
         }catch(err){
             console.error(err);
@@ -180,7 +196,7 @@ class Suggestion extends Component{
                         onClick={() => this.handleSubmit(false)}>Search</button>
                 </div>
                 {/* Information cards */}
-                <div id="card-container"></div>
+                <div id="cards-container"></div>
                 {/* Page Buttons */}
                 <div className="page-number-container">
                     <button className="btn-inverse"
