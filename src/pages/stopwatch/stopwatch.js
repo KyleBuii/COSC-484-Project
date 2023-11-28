@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './stopwatch.scss';
 
 const StopwatchTimer = () => {
   const [elapsedTime, setElapsedTime] = useState(0);
