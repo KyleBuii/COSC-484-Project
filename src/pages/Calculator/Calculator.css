@@ -10,6 +10,53 @@
  position: relative;
 }
 
+.fields {
+  width: 90%;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    padding: 50px 60px 70px;
+    text-align: center;
+}
+
+.inputs {
+  border:none;
+  outline:none;
+  display:inline-block;
+  height:34px;
+  vertical-align:middle;
+  position:relative;
+  bottom:14px;
+  right:9px;
+  border-radius:22px;
+  width:220px;
+  box-sizing:border-box;
+  padding:0 18px; 
+}
+
+.form-check{
+  border:none;
+  outline:none;
+  display:inline-block;
+  height:20px;
+  vertical-align:middle;
+  position:relative;
+  
+  right:9px;
+  border-radius:22px;
+  width:220px;
+  box-sizing:border-box;
+  
+}
+.activity-check{
+  
+  
+}
+
+
 .btn{
   size: 800px;
 }
