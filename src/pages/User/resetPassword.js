@@ -1,9 +1,9 @@
 import {Component} from 'react'
 
-class ResetPassword extends Component{
-    return(
-        <>
-            <div></div>
-        </>
+const ResetPassword = () =>{
+    return(<div>
+            <p>Wai</p>
+            </div>
+        
     )
 }

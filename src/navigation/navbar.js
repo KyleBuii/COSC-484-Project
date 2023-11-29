@@ -1,4 +1,6 @@
+
 import { Component } from "react";
+import {GiGymBag} from "react-icons/gi"
 import {
     Nav,
     NavBtn,
@@ -8,6 +10,7 @@ import {
     NavLink,
     NavAuth,
 } from "./navcomponents";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
     render() {
@@ -19,6 +22,7 @@ class Navbar extends Component {
                         <NavLink to="/personalgoals" activeStyle>Personal Goals</NavLink>
                         <NavLink to="/suggestion" activeStyle>Suggestion</NavLink>
                         <NavLink to="/calculator" activeStyle>Fitness Calculator</NavLink>
+                        <NavLink to="/"><GiGymBag/></NavLink>
                     </NavMenu>
 
                     <NavAuth>
@@ -36,5 +40,7 @@ class Navbar extends Component {
     }
 
 }
+
+
 
 export default Navbar;
