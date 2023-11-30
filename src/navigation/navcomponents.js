@@ -85,4 +85,6 @@ export const NavBtnLink = styled(Link)`
   border-radius: 4px;
 `;
 
-
+export const WebsiteName = styled.h1`
+  color: white;
+`;
