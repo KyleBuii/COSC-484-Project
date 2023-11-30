@@ -2,6 +2,10 @@
 $primaryColor: #3498db;
 $backgroundColor: #7EA16B;
 
+body{
+  background-color: #1c3144;
+}
+
 .user-form {  
   max-width: 500px;
   margin: 100px auto;
@@ -10,7 +14,6 @@ $backgroundColor: #7EA16B;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
   label {
     display: block;
     margin-bottom: 10px;
@@ -89,4 +92,24 @@ $backgroundColor: #7EA16B;
 
 img{
   object-fit:inherit;
+}
+
+button{
+  background-color: rgb(195, 216, 152);
+  border: 2px solid rgb(89, 111, 98);
+}
+
+select{
+  border: 1px solid rgb(89, 111, 98);
+  :checked{
+      background-color: rgb(126, 161, 107);
+  }
+}
+
+input{
+  border: 1px solid rgb(89, 111, 98);
+}
+
+h1, ul, li, label{
+  color: white;
 }

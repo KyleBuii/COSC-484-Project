@@ -1,6 +1,7 @@
 import './suggestion.scss';
 import { Component, useContext } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { IconContext } from 'react-icons';
 
 /// Fills a select with the array
 function PopulateSelect(arr, element){
@@ -201,12 +202,16 @@ class Suggestion extends Component{
                 <div className="page-number-container">
                     <button className="btn-inverse"
                         onClick={() => this.pageTurn("left")}>
-                        <FaArrowLeft/>
+                        <IconContext.Provider value={{ color: "white", className: "global-class-name" }}>
+                            <FaArrowLeft/>
+                        </IconContext.Provider>
                     </button>
                     <p className="page-number">{this.state.offset/10}</p>
                     <button className="btn-inverse"
                         onClick={() => this.pageTurn("right")}>
-                        <FaArrowRight/>    
+                        <IconContext.Provider value={{ color: "white", className: "global-class-name" }}>
+                            <FaArrowRight/>    
+                        </IconContext.Provider>
                     </button>
                 </div>
             </div>
