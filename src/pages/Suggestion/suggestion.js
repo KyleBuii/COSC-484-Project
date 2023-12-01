@@ -1,5 +1,5 @@
 import './suggestion.scss';
-import { Component, useContext } from "react";
+import { Component } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { IconContext } from 'react-icons';
 
@@ -149,8 +149,15 @@ class Suggestion extends Component{
             });
         };
     };
+    test(){
+        fetch('/api')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error))
+    };
     componentDidMount(){
         this.handleSubmit(false);
+        this.test();
         const type = ["Cardio", "Olympic Weightlifting", "Plyometrics"
             , "Powerlifting", "Strength", "Stretching", "Strongman"];     
         const muscle = ["Abdominals", "Abductors", "Adductors", "Biceps"
