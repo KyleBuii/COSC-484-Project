@@ -43,8 +43,14 @@ class Suggestion extends Component{
         divCardInfo.style.display = "none";
         divCardInfo.innerHTML = `
             <p>Equipment: ${equipment.charAt(0).toUpperCase() + equipment.slice(1).replace("_", " ")}</p>
-            <p>Instructions: ${instructions}</p>
         `;
+        const ulCardInstructions = document.createElement("ol");
+        ulCardInstructions.innerHTML += "Instructions:";
+        instructions
+            .slice(0, instructions.length-1)
+            .split(".")
+            .map(e => ulCardInstructions.innerHTML += "<li>" + e + "</li>")
+        divCardInfo.appendChild(ulCardInstructions);
         switch(difficulty){
             case "beginner":
                 divCardName.className = "card beginner";

@@ -82,8 +82,18 @@
         display: none;
         border-radius: 0px 0px 30px 30px;
         border-top: none;
-        p:first-of-type{
+        color: black;
+        p{
             margin: 0em 0em 1em;
+        }
+        ol{
+            margin: 0;
+            padding: 0;
+            color: black;
+            li{
+                margin: 0.5rem 0rem 0rem 1rem;
+                color: black;
+            }
         }
     }
 }
