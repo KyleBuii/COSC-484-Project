@@ -1,6 +1,7 @@
 import './suggestion.scss';
-import { Component, useContext } from "react";
+import { Component } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { IconContext } from 'react-icons';
 
 /// Fills a select with the array
 function PopulateSelect(arr, element){
@@ -42,8 +43,14 @@ class Suggestion extends Component{
         divCardInfo.style.display = "none";
         divCardInfo.innerHTML = `
             <p>Equipment: ${equipment.charAt(0).toUpperCase() + equipment.slice(1).replace("_", " ")}</p>
-            <p>Instructions: ${instructions}</p>
         `;
+        const ulCardInstructions = document.createElement("ol");
+        ulCardInstructions.innerHTML += "Instructions:";
+        instructions
+            .slice(0, instructions.length-1)
+            .split(".")
+            .map(e => ulCardInstructions.innerHTML += "<li>" + e + "</li>")
+        divCardInfo.appendChild(ulCardInstructions);
         switch(difficulty){
             case "beginner":
                 divCardName.className = "card beginner";
@@ -142,8 +149,15 @@ class Suggestion extends Component{
             });
         };
     };
+    test(){
+        fetch('/api')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error))
+    };
     componentDidMount(){
         this.handleSubmit(false);
+        this.test();
         const type = ["Cardio", "Olympic Weightlifting", "Plyometrics"
             , "Powerlifting", "Strength", "Stretching", "Strongman"];     
         const muscle = ["Abdominals", "Abductors", "Adductors", "Biceps"
@@ -201,12 +215,16 @@ class Suggestion extends Component{
                 <div className="page-number-container">
                     <button className="btn-inverse"
                         onClick={() => this.pageTurn("left")}>
-                        <FaArrowLeft/>
+                        <IconContext.Provider value={{ color: "white", className: "global-class-name" }}>
+                            <FaArrowLeft/>
+                        </IconContext.Provider>
                     </button>
                     <p className="page-number">{this.state.offset/10}</p>
                     <button className="btn-inverse"
                         onClick={() => this.pageTurn("right")}>
-                        <FaArrowRight/>    
+                        <IconContext.Provider value={{ color: "white", className: "global-class-name" }}>
+                            <FaArrowRight/>    
+                        </IconContext.Provider>
                     </button>
                 </div>
             </div>

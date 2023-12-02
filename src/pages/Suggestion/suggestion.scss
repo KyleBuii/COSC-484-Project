@@ -25,6 +25,9 @@
     input{
         border: 1px solid rgb(89, 111, 98);
     }
+    label{
+        color: white;
+    }
     select{
         width: 100%;
         border: 1px solid rgb(89, 111, 98);
@@ -33,13 +36,14 @@
         }
     }
     button{
-        background-color: rgb(126, 161, 107);
+        background-color: rgb(195, 216, 152);
         border: 2px solid rgb(89, 111, 98);
     }
 }
 
 .page-number{
     font-weight: bold;
+    color: white;
 }
 
 .page-number-container{
@@ -60,6 +64,7 @@
     }
     h1{
         margin: 0.3rem 0rem 1.5rem;
+        color: black;
     }
     &.beginner{
         background-color: rgb(126, 161, 107);
@@ -77,8 +82,18 @@
         display: none;
         border-radius: 0px 0px 30px 30px;
         border-top: none;
-        p:first-of-type{
+        color: black;
+        p{
             margin: 0em 0em 1em;
+        }
+        ol{
+            margin: 0;
+            padding: 0;
+            color: black;
+            li{
+                margin: 0.5rem 0rem 0rem 1rem;
+                color: black;
+            }
         }
     }
 }
