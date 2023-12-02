@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./personalgoals.scss";
 
+//add two more form fields for target and starting weight
+
 function Personalgoals() {
   //user input collection
   const [newGoalName, setName] = useState("");
