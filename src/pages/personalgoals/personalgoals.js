@@ -9,6 +9,8 @@ function Personalgoals() {
   const [newGoalStart, setStart] = useState("");
   const [newGoalEnd, setEnd] = useState("");
 
+  // const[newGoalsWeight,setWeight] = useState("");
+
   //stores created goals in an array
   const [goals, setGoals] = useState([]);
 
@@ -63,63 +65,73 @@ function Personalgoals() {
   }
 
   return (
-    <>
-      <h1 className="mainHeader">Personal Goals:</h1>
-      <form onSubmit={createGoal} className="newGoalForm">
-        <div className="formRow">
-          <label htmlFor="goalName">Name</label>
-          <input
-            value={newGoalName}
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            id="goalName"
-          />
-          <label htmlFor="goalStartDate">Start Date</label>
-          <input
-            value={newGoalStart}
-            onChange={(e) => setStart(e.target.value)}
-            type="text"
-            id="goalStartDate"
-          />
-          <label htmlFor="goalEndDate">End Date</label>
-          <input
-            value={newGoalEnd}
-            onChange={(e) => setEnd(e.target.value)}
-            type="text"
-            id="goalEndDate"
-          />
-        </div>
-        <button className="formButton">Create</button>
-      </form>
+    <div className="main">
+      <div className="formGroup">
+        <h1 className="mainHeader">Personal Goals:</h1>
+        <form onSubmit={createGoal} className="newGoalForm">
+          <div className="formRow">
+            <label htmlFor="goalName">Name</label>
+            <input
+              value={newGoalName}
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+              id="goalName"
+              required
+            />
+            <label htmlFor="goalStartDate">Start Date</label>
+            <input
+              value={newGoalStart}
+              onChange={(e) => setStart(e.target.value)}
+              type="date"
+              id="goalStartDate"
+              required
+            />
+            <label htmlFor="goalEndDate">End Date</label>
+            <input
+              value={newGoalEnd}
+              onChange={(e) => setEnd(e.target.value)}
+              type="date"
+              id="goalEndDate"
+              required
+            />
+          </div>
+          <button className="formButton">Create</button>
+        </form>
+      </div>
 
-      <h1 className="listHeader">Current Goals:</h1>
-      <ul>
-        {goals.length === 0 && "No active goals"}
-        {goals.map((goals) => {
-          return (
-            <li key={goals.id}>
-              <input
-                type="checkbox"
-                checked={goals.completed}
-                onChange={(e) => toggleComplete(goals.id, e.target.checked)}
-              />
-              <b>{goals.name}: </b>
-              <label>Start:{goals.start} </label>
-              <label>Target:{goals.target}</label>
-              <button onClick={() => editGoal(goals.id)} className="editButton">
-                edit
-              </button>
-              <button
-                onClick={() => deleteGoal(goals.id)}
-                className="deleteButton"
-              >
-                delete
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+      <div className="goalListGroup">
+        <h1 className="listHeader">Current Goals:</h1>
+        <ul>
+          {goals.length === 0 && "No active goals"}
+          {goals.map((goals) => {
+            return (
+              <li key={goals.id}>
+                <input
+                  type="checkbox"
+                  checked={goals.completed}
+                  onChange={(e) => toggleComplete(goals.id, e.target.checked)}
+                />
+                <b>{goals.name}: </b>
+                <label>Start:{goals.start} </label>
+                <label>Target:{goals.target}</label>
+                <button
+                  onClick={() => editGoal(goals.id)}
+                  className="editButton"
+                >
+                  edit
+                </button>
+                <button
+                  onClick={() => deleteGoal(goals.id)}
+                  className="deleteButton"
+                >
+                  delete
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
   );
 }
 
