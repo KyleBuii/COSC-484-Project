@@ -1,49 +1,103 @@
 import React, { useState, useEffect } from 'react';
-import './stopwatch.scss';
+//import './index.css';
+
 
 const StopwatchTimer = () => {
-  const [elapsedTime, setElapsedTime] = useState(0);
-  const [timerDuration, setTimerDuration] = useState(60);
-  const [isRunning, setIsRunning] = useState(false);
+  const [stopwatchTime, setStopwatchTime] = useState(0);
+  const [timerTime, setTimerTime] = useState(60);
+  const [inputMinutes, setInputMinutes] = useState('');
+  const [inputSeconds, setInputSeconds] = useState('');
+  const [isStopwatchRunning, setIsStopwatchRunning] = useState(false);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   useEffect(() => {
-    let intervalId;
+    let stopwatchInterval, timerInterval;
 
-    if (isRunning) {
-      intervalId = setInterval(() => {
-        setElapsedTime(prevTime => prevTime + 1);
+    if (isStopwatchRunning) {
+      stopwatchInterval = setInterval(() => {
+        setStopwatchTime(prevTime => prevTime + 1);
       }, 1000);
     }
 
     return () => {
-      clearInterval(intervalId);
+      clearInterval(stopwatchInterval);
     };
-  }, [isRunning]);
+  }, [isStopwatchRunning]);
+
+  useEffect(() => {
+    let timerInterval;
+
+    if (isTimerRunning && timerTime > 0) {
+      timerInterval = setInterval(() => {
+        setTimerTime(prevTime => {
+          if (prevTime > 0) {
+            return prevTime - 1;
+          } else {
+            setIsTimerRunning(false);
+            clearInterval(timerInterval);
+            return 0;
+          }
+        });
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timerInterval);
+    };
+  }, [isTimerRunning, timerTime]);
+
+  useEffect(() => {
+    if (timerTime === 0 && isTimerRunning) {
+      setIsTimerRunning(false);
+      alert('Timer has finished!');
+    }
+  }, [timerTime, isTimerRunning]);
 
   const startStopwatch = () => {
-    setIsRunning(true);
+    setIsStopwatchRunning(true);
   };
 
   const stopStopwatch = () => {
-    setIsRunning(false);
+    setIsStopwatchRunning(false);
   };
 
   const resetStopwatch = () => {
-    setElapsedTime(0);
-    setIsRunning(false);
+    setStopwatchTime(0);
+    setIsStopwatchRunning(false);
   };
 
   const startTimer = () => {
-    setIsRunning(true);
+    setIsTimerRunning(true);
   };
 
   const stopTimer = () => {
-    setIsRunning(false);
+    setIsTimerRunning(false);
   };
 
   const resetTimer = () => {
-    setElapsedTime(0);
-    setIsRunning(false);
+    setTimerTime(0);
+    setIsTimerRunning(false);
+  };
+
+  const handleMinutesChange = event => {
+    setInputMinutes(event.target.value);
+  };
+
+  const handleSecondsChange = event => {
+    setInputSeconds(event.target.value);
+  };
+
+  const setCustomTimer = () => {
+    const minutes = parseInt(inputMinutes, 10) || 0;
+    const seconds = parseInt(inputSeconds, 10) || 0;
+
+    if (minutes >= 0 && seconds >= 0) {
+      setTimerTime(minutes * 60 + seconds);
+      setInputMinutes('');
+      setInputSeconds('');
+    } else {
+      alert('Please enter valid positive numbers for minutes and seconds.');
+    }
   };
 
   const formatTime = timeInSeconds => {
@@ -54,20 +108,35 @@ const StopwatchTimer = () => {
 
   return (
     <div>
-      <div>
+      <div className="stopwatch-timer">
         <h2>Stopwatch</h2>
-        <p>{formatTime(elapsedTime)}</p>
+        <p>{formatTime(stopwatchTime)}</p>
         <button onClick={startStopwatch}>Start</button>
         <button onClick={stopStopwatch}>Stop</button>
         <button onClick={resetStopwatch}>Reset</button>
       </div>
 
-      <div>
+      <div className="stopwatch-timer">
         <h2>Timer</h2>
-        <p>{formatTime(timerDuration - elapsedTime)}</p>
+        <p>{formatTime(timerTime)}</p>
         <button onClick={startTimer}>Start</button>
         <button onClick={stopTimer}>Stop</button>
         <button onClick={resetTimer}>Reset</button>
+        <div>
+          <input
+            type="number"
+            placeholder="Minutes"
+            value={inputMinutes}
+            onChange={handleMinutesChange}
+          />
+          <input
+            type="number"
+            placeholder="Seconds"
+            value={inputSeconds}
+            onChange={handleSecondsChange}
+          />
+          <button onClick={setCustomTimer}>Set Timer</button>
+        </div>
       </div>
     </div>
   );
