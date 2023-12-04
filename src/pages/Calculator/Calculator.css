@@ -1,121 +1,93 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-body {
-  padding: 0px;
-  margin: 0px;
-  background: #f4f1f1;
-  font-family: "Open Sans", sans-serif;
-  color: black;
-  font-size: 15px;
-}
-
-div#bmrcalc {
-  height: 100%;
-  width: 100%;
+#bmrcalc {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  height: 100vh;
 }
+
+h2{
+  font-family: 'Times New Roman', Times, serif;
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px #0000AA;
+  text-decoration: underline;
+}
+
 .form {
-  width: 600px;
-  background: white;
+  border: 1px solid #ccc;
   padding: 20px;
-  border: 1px solid #ffc5c5;
-  box-shadow: 0 1px 9px #cdb3b3;
-  border-radius: 5px;
-  max-width: 100%;
+  border-radius: 8px;
+  width: 550px;
+  max-height: 600px; /* Set a maximum height for the form */
+  overflow-y: auto;
+  background-color: #7EA16B;
 }
-h2 {
-  margin: 0px;
-  text-align: center;
-  font-size: 21px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
+
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-family: 'Times New Roman', Times, serif;
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px #0000AA;
 }
 
 .inputwrap {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  text-align: left;
+  margin-bottom: 15px;
 }
 
 .inputwrap label {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  font-family: 'Times New Roman', Times, serif;
+  color: whitesmoke;
 }
 
-input[type="text"],
-input[type="number"] {
-  padding: 8px 7px;
-  width: 110px;
-  margin-right: 10px;
-
-  font-family: "Open Sans", sans-serif;
-  font-size: 15px;
-}
-input[type="text"] {
-  width: 100%;
+.inputwrap label input[type="radio"] {
+  margin-left: 5px; /* Adjust margin as needed for spacing */
 }
 
-input[type="submit"] {
-  width: 100%;
-  display: block;
-  background: black;
-  color: white;
-  text-transform: uppercase;
-  padding: 10px 0px;
-  border: none;
 
-  font-family: "Open Sans", sans-serif;
-  font-size: 15px;
+
+.inputwrap input[type="number"],
+.inputwrap select {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: calc(100% - 20px);
 }
+
 button {
-  display: block;
-  width: 100%;
-  padding: 10px 1px;
-  background: black;
-  color: white;
+  padding: 10px;
+  border-radius: 4px;
   border: none;
-  font-family: "Open Sans", sans-serif;
-  text-transform: uppercase;
   cursor: pointer;
-  font-size: 16px;
-}
-select {
-  padding: 10px 10px;
-  width: 100%;
-  font-family: "Open Sans", sans-serif;
-  font-size: 15px;
-}
-.error {
-  background: #bf2121;
+  background-color: #007bff;
   color: white;
-  text-align: center;
-  padding: 4px 16px;
-  margin-bottom: 15px;
-  display: inline-block;
-}
-.result {
-  background: red;
-  color: white;
-  text-align: center;
-  padding: 10px 0px;
-  margin-top: 9px;
-  font-size: 18px;
-}
-.workout {
-  margin-top: 19px;
 }
 
-@media only screen and (max-width: 500px) {
-  div#bmrcalc {
-    align-items: end;
-  }
+button:hover {
+  background-color: #0056b3;
 }
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.resultBMR,
+.resultSug,
+.resultPAL {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  font-family: 'Times New Roman', Times, serif;
+  color: whitesmoke;
+}
+
+.workout {
+  margin-top: 20px;
+}
+
