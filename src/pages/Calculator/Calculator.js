@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./Calculator.css";
+import "./Calculator.css";
 class Calculator extends Component {
   constructor() {
     super();
@@ -13,7 +13,7 @@ class Calculator extends Component {
       bmr: "",
       sugggestion: "",
       pal: "",
-      weightType: ""
+      weightType: "",
     };
   }
   handleAgeChange = (event) => {
