@@ -105,27 +105,32 @@ function Personalgoals() {
           {goals.length === 0 && "No active goals"}
           {goals.map((goals) => {
             return (
-              <li key={goals.id}>
-                <input
-                  type="checkbox"
-                  checked={goals.completed}
-                  onChange={(e) => toggleComplete(goals.id, e.target.checked)}
-                />
-                <b>{goals.name}: </b>
-                <label>Start:{goals.start} </label>
-                <label>Target:{goals.target}</label>
-                <button
-                  onClick={() => editGoal(goals.id)}
-                  className="editButton"
-                >
-                  edit
-                </button>
-                <button
-                  onClick={() => deleteGoal(goals.id)}
-                  className="deleteButton"
-                >
-                  delete
-                </button>
+              <li key={goals.id} className="goalListItem">
+                <div className="goalText">
+                  <input
+                    type="checkbox"
+                    checked={goals.completed}
+                    onChange={(e) => toggleComplete(goals.id, e.target.checked)}
+                  />
+                  <b>{goals.name}: </b>
+                  <label>Start:{goals.start} </label>
+                  <label>Target:{goals.target}</label>
+                </div>
+
+                <div className="buttonContainer">
+                  <button
+                    onClick={() => editGoal(goals.id)}
+                    className="editButton"
+                  >
+                    edit
+                  </button>
+                  <button
+                    onClick={() => deleteGoal(goals.id)}
+                    className="deleteButton"
+                  >
+                    delete
+                  </button>
+                </div>
               </li>
             );
           })}
