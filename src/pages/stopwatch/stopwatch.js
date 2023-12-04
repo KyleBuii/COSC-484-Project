@@ -8,6 +8,7 @@ const StopwatchTimer = () => {
   const [inputSeconds, setInputSeconds] = useState('');
   const [isStopwatchRunning, setIsStopwatchRunning] = useState(false);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [lapTimes, setLapTimes] = useState([]);
 
   useEffect(() => {
     let stopwatchInterval, timerInterval;
@@ -47,12 +48,10 @@ const StopwatchTimer = () => {
 
   useEffect(() => {
     if (timerTime <= 10 && timerTime > 0) {
-      
       document.getElementById('timer-text').style.color = '#e74c3c';
-    } else if(timerTime <= 20 && timerTime >= 11){
+    } else if (timerTime <= 20 && timerTime >= 11) {
       document.getElementById('timer-text').style.color = '#FFAE42';
-    }else {
-  
+    } else {
       document.getElementById('timer-text').style.color = '#000000';
     }
 
@@ -73,6 +72,7 @@ const StopwatchTimer = () => {
   const resetStopwatch = () => {
     setStopwatchTime(0);
     setIsStopwatchRunning(false);
+    setLapTimes([]);
   };
 
   const startTimer = () => {
@@ -109,6 +109,14 @@ const StopwatchTimer = () => {
     }
   };
 
+  const lapStopwatch = () => {
+    setLapTimes(prevLapTimes => [...prevLapTimes, stopwatchTime]);
+  };
+
+  const resetLapTimes = () => {
+    setLapTimes([]);
+  };
+
   const formatTime = timeInSeconds => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
@@ -123,6 +131,7 @@ const StopwatchTimer = () => {
         <button onClick={startStopwatch}>Start</button>
         <button onClick={stopStopwatch}>Stop</button>
         <button onClick={resetStopwatch}>Reset</button>
+        <button onClick={lapStopwatch}>Lap</button>
       </div>
 
       <div className="stopwatch-timer">
@@ -147,6 +156,18 @@ const StopwatchTimer = () => {
           <button onClick={setCustomTimer}>Set Timer</button>
         </div>
       </div>
+
+      {lapTimes.length > 0 && (
+        <div className="stopwatch-timer">
+          <h2>Lap Times</h2>
+          <ul>
+            {lapTimes.map((lapTime, index) => (
+              <li key={index}>{`Lap ${index + 1}: ${formatTime(lapTime)}`}</li>
+            ))}
+          </ul>
+          <button onClick={resetLapTimes}>Reset Lap Times</button>
+        </div>
+      )}
     </div>
   );
 };
