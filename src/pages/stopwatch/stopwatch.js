@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import './index.css';
-
+import './stopwatch.scss';
 
 const StopwatchTimer = () => {
   const [stopwatchTime, setStopwatchTime] = useState(0);
@@ -47,6 +46,16 @@ const StopwatchTimer = () => {
   }, [isTimerRunning, timerTime]);
 
   useEffect(() => {
+    if (timerTime <= 10 && timerTime > 0) {
+      
+      document.getElementById('timer-text').style.color = '#e74c3c';
+    } else if(timerTime <= 20 && timerTime >= 11){
+      document.getElementById('timer-text').style.color = '#FFAE42';
+    }else {
+  
+      document.getElementById('timer-text').style.color = '#000000';
+    }
+
     if (timerTime === 0 && isTimerRunning) {
       setIsTimerRunning(false);
       alert('Timer has finished!');
@@ -110,7 +119,7 @@ const StopwatchTimer = () => {
     <div>
       <div className="stopwatch-timer">
         <h2>Stopwatch</h2>
-        <p>{formatTime(stopwatchTime)}</p>
+        <p id="stopwatch-text">{formatTime(stopwatchTime)}</p>
         <button onClick={startStopwatch}>Start</button>
         <button onClick={stopStopwatch}>Stop</button>
         <button onClick={resetStopwatch}>Reset</button>
@@ -118,7 +127,7 @@ const StopwatchTimer = () => {
 
       <div className="stopwatch-timer">
         <h2>Timer</h2>
-        <p>{formatTime(timerTime)}</p>
+        <p id="timer-text">{formatTime(timerTime)}</p>
         <button onClick={startTimer}>Start</button>
         <button onClick={stopTimer}>Stop</button>
         <button onClick={resetTimer}>Reset</button>
