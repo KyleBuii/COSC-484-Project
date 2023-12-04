@@ -1,64 +1,117 @@
 import { useState } from "react";
 import "./personalgoals.scss";
 
-//add two more form fields for target and starting weight
-
 function Personalgoals() {
-  //user input collection
   const [newGoalName, setName] = useState("");
   const [newGoalStart, setStart] = useState("");
   const [newGoalEnd, setEnd] = useState("");
-
-  // const[newGoalsWeight,setWeight] = useState("");
-
-  //stores created goals in an array
+  const [editingGoal, setEditingGoal] = useState(null);
   const [goals, setGoals] = useState([]);
 
+  const renderEditForm = () => {
+    if (!editingGoal) return null;
+
+    return (
+      <EditForm
+        goal={editingGoal}
+        onSave={handleSaveEditedGoal}
+        onClose={() => setEditingGoal(null)}
+      />
+    );
+  };
+
   function getRandomNumber(min, max) {
-    // Generate a random number
     return Math.floor(Math.random() * (max - min) + min);
   }
 
   function toggleComplete(id, completed) {
-    setGoals((goals) => {
-      return goals.map((goal) => {
-        if (goal === id) {
-          return { ...goals, completed };
-        }
-
-        return goal;
-      });
-    });
+    setGoals((prevGoals) =>
+      prevGoals.map((goal) => (goal.id === id ? { ...goal, completed } : goal))
+    );
   }
 
-  function editGoal() {
-    //create a pop up to overwrite seleted goal passing in an id
+  function editGoal(id) {
+    const goalToEdit = goals.find((goal) => goal.id === id);
+    setEditingGoal(goalToEdit);
+  }
+
+  function EditForm({ goal, onSave, onClose }) {
+    const [editedName, setEditedName] = useState(goal.name);
+    const [editedStart, setEditedStart] = useState(goal.start);
+    const [editedEnd, setEditedEnd] = useState(goal.target);
+
+    const handleSave = () => {
+      onSave(goal.id, editedName, editedStart, editedEnd);
+      onClose();
+    };
+
+    return (
+      <div className="editForm">
+        <h2>Edit Goal</h2>
+        <label htmlFor="editedName">Name</label>
+        <input
+          type="text"
+          id="editedName"
+          value={editedName}
+          onChange={(e) => setEditedName(e.target.value)}
+        />
+        <label htmlFor="editedStart">Start Date</label>
+        <input
+          type="date"
+          id="editedStart"
+          value={editedStart}
+          onChange={(e) => setEditedStart(e.target.value)}
+        />
+        <label htmlFor="editedEnd">End Date</label>
+        <input
+          type="date"
+          id="editedEnd"
+          value={editedEnd}
+          onChange={(e) => setEditedEnd(e.target.value)}
+        />
+        <button onClick={handleSave}>Save</button>
+        <button onClick={onClose}>Cancel</button>
+      </div>
+    );
+  }
+
+  function handleSaveEditedGoal(id, name, start, target) {
+    setGoals((prevGoals) =>
+      prevGoals.map((goal) =>
+        goal.id === id ? { ...goal, name, start, target } : goal
+      )
+    );
+    setEditingGoal(null);
   }
 
   function deleteGoal(id) {
-    setGoals((newGoals) => {
-      return newGoals.filter((goal) => goal.id !== id);
-    });
+    setGoals((prevGoals) => prevGoals.filter((goal) => goal.id !== id));
   }
 
   function createGoal(e) {
     e.preventDefault();
 
-    //gets the text from the form to create user goals
-    setGoals((newGoals) => {
-      return [
-        ...newGoals,
+    if (editingGoal) {
+      handleSaveEditedGoal(
+        editingGoal.id,
+        newGoalName,
+        newGoalStart,
+        newGoalEnd
+      );
+      setEditingGoal(null);
+    } else {
+      setGoals((prevGoals) => [
+        ...prevGoals,
         {
-          id: getRandomNumber(1, 10000), //link to user account later
+          id: getRandomNumber(1, 10000),
           name: newGoalName,
           start: newGoalStart,
           target: newGoalEnd,
-          checked: false,
+          completed: false,
         },
-      ];
-    });
+      ]);
+    }
 
-    //resets the text fields
     setName("");
     setStart("");
     setEnd("");
@@ -95,7 +148,9 @@ function Personalgoals() {
               required
             />
           </div>
-          <button className="formButton">Create</button>
+          <button className="formButton">
+            {editingGoal ? "Save" : "Create"}
+          </button>
         </form>
       </div>
 
@@ -103,39 +158,42 @@ function Personalgoals() {
         <h1 className="listHeader">Current Goals:</h1>
         <ul>
           {goals.length === 0 && "No active goals"}
-          {goals.map((goals) => {
-            return (
-              <li key={goals.id} className="goalListItem">
-                <div className="goalText">
+          {goals.map((goal) => (
+            <li key={goal.id} className="goalListItem">
+              <div className="goalText">
+                <div className="goalTextNameCheck">
                   <input
                     type="checkbox"
-                    checked={goals.completed}
-                    onChange={(e) => toggleComplete(goals.id, e.target.checked)}
+                    checked={goal.completed}
+                    onChange={() => toggleComplete(goal.id, !goal.completed)}
                   />
-                  <b>{goals.name}: </b>
-                  <label>Start:{goals.start} </label>
-                  <label>Target:{goals.target}</label>
+                  <h3>{goal.name}</h3>
                 </div>
+                <div>
+                  <label>Start Date: {goal.start}</label>
+                  <label>Target Date: {goal.target}</label>
+                </div>
+              </div>
 
-                <div className="buttonContainer">
-                  <button
-                    onClick={() => editGoal(goals.id)}
-                    className="editButton"
-                  >
-                    edit
-                  </button>
-                  <button
-                    onClick={() => deleteGoal(goals.id)}
-                    className="deleteButton"
-                  >
-                    delete
-                  </button>
-                </div>
-              </li>
-            );
-          })}
+              <div className="buttonContainer">
+                <button
+                  onClick={() => editGoal(goal.id)}
+                  className="editButton"
+                >
+                  edit
+                </button>
+                <button
+                  onClick={() => deleteGoal(goal.id)}
+                  className="deleteButton"
+                >
+                  delete
+                </button>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
+      {renderEditForm()}
     </div>
   );
 }
