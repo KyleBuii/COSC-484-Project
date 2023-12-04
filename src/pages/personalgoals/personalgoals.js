@@ -171,7 +171,7 @@ function Personalgoals() {
                 </div>
                 <div>
                   <label>Start Date: {goal.start}</label>
-                  <label>Target Date: {goal.target}</label>
+                  <label> Target Date: {goal.target}</label>
                 </div>
               </div>
 
