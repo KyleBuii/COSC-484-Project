@@ -74,7 +74,7 @@ const getData = async (event) =>{
     <input type="password" value={password} onChange={(e) =>setPassword(e.target.value)}/><br/>
     </label>
 
-    <button type="submit" onClick={getData}>Log In</button>
+    <button type="submit" >Log In</button>
     <hr/>
     <h4>Password Recovery</h4>
     <div className='icon_row'>
