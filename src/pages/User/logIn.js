@@ -3,7 +3,6 @@ import React, {useState} from "react";
 import {Link} from 'react-router-dom';
 import { MdTextsms } from "react-icons/md";
 import {HiMail} from 'react-icons/hi'
-// import {MongoClient} from 'mongodb'
 import './user.scss'
 
 const LogIn = () => {
@@ -14,18 +13,7 @@ const LogIn = () => {
         </>
     )
 }
-// const mongoClient = new MongoClient(
-//     'mongodb+srv://eguzmandls:qivPxBAySCsC7hZx@mfj.fst9gm9.mongodb.net/?retryWrites=true&w=majority'
-// )
 
-
-// const data = await mongoClient
-//     .db()
-//     .collection('mfjuser')
-//     .find()
-//     .toArray()
-    
-//     console.log(data)
 
 const UserForm = () =>{
     
@@ -37,7 +25,7 @@ axios.defaults.withCredentials= true;
 
 const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('https://mfjserver.vercel.app/authenticate', {username:username, password:password})
+    axios.post('localhost:4000', {username:username, password:password})
     .then(result => console.log(result))
     .catch(err => console.log(err))
     
