@@ -20,6 +20,15 @@ const [user, setUser] = useState('');
 const [password, setPassword] = useState('');
 //Testing variables
 const [counter, setCounter] = useState(0)
+axios.defaults.withCredentials= true;
+
+const handleSubmit = (e) =>{
+    e.preventDefault()
+    axios.post('https://mfjserver.vercel.app/register', {username, email, password})
+    .then(result => console.log(result))
+    .catch(err => console.log(err))
+}
+
 const auth = async() =>{
     this.preventDefault();
     try{
@@ -57,7 +66,7 @@ const getData = async (event) =>{
     <label>{user.data}</label>
 
 
-    <form className="user-form" id='login' >
+    <form className="user-form" id='login' onSubmit={handleSubmit} >
     <label htmlFor="login">Username:
     <input type="text" value={user} onChange={(e) =>setUser(e.target.value)}/>
     </label>
