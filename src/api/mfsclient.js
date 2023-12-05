@@ -5,18 +5,18 @@ import { MdTextsms } from "react-icons/md";
 import {HiMail} from 'react-icons/hi'
 import '../pages/User/user.scss'
 
-
+const handleSubmit = (e) =>{
+    e.preventDefault()
+    axios.post('https://mfjserver.vercel.app/register', {username, email, password})
+    .then(result => console.log(result))
+    .catch(err => console.log(err))
+}
 const UserForm = () =>{
     const [username, setUsername] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     axios.defaults.withCredentials= true;
-    const handleSubmit = (e) =>{
-        e.preventDefault()
-        axios.post('https://mfjserver.vercel.app/register', {username, email, password})
-        .then(result => console.log(result))
-        .catch(err => console.log(err))
-    }
+
 
 
     
