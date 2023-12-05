@@ -1,75 +1,83 @@
 import axios from 'axios';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ReactDOM from'react-dom'
 import { Link } from 'react-router-dom';
 import { MdTextsms } from "react-icons/md";
-<<<<<<< HEAD
 import {HiMail} from 'react-icons/hi'
 import './user.scss'
-=======
-import { HiMail } from 'react-icons/hi'
-// import MongoClient from 'mongodb'
-import '../style.scss'
->>>>>>> 7763522b5b627ab126aee9820756017c9b1b66a9
 
-const LogIn = () => {
+const LogIn = (props) => {
+    const { screen, setScreen } = props;
+
+    const [data, setData] = useState();
+  
+    const deleteCookie = async () => {
+      try {
+        await axios.get('/clear-cookie');
+        setScreen('auth');
+      } catch (e) {
+        console.log(e);
+      }
+    };
+  
+    const getData = async () => {
+      try {
+        const res = await axios.get('/get-data');
+        console.log(res.data)
+        setData(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }  
 
     return (
         <>
+        {screen === 'auth'}
             <UserForm></UserForm>
         </>
     )
 }
 
-
-<<<<<<< HEAD
-const UserForm = () =>{
-    
-const [username, setUsername] = useState('');
-const [password, setPassword] = useState('');
-//Testing variables
-const [counter, setCounter] = useState(0)
-axios.defaults.withCredentials= true;
-
-const handleSubmit = (e) =>{
-    e.preventDefault()
-    axios.post('localhost:4000', {username:username, password:password})
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
-    
-}
-=======
-// const data = await mongoClient
-//     .db()
-//     .collection('mfjuser')
-//     .find()
-//     .toArray()
-
-//     console.log(data)
-
 const UserForm = () => {
+    const [screen, setScreen] = useState('auth');
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    //Testing variables
-    const [counter, setCounter] = useState(0)
-    axios.defaults.withCredentials = true;
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('https://mfjserver.vercel.app/authenticate', { username: username, password: password })
-            .then(result => console.log(result))
-            .catch(err => console.log(err))
+    const auth = async () => {
+        try {
+          const res = await axios.get('/authenticate', { auth: { username, password } });
+    
+          if (res.data.screen !== undefined) {
+            setScreen(res.data.screen);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      };
 
-    }
->>>>>>> 7763522b5b627ab126aee9820756017c9b1b66a9
-
-
-
+      const readCookie = async () => {
+        try {
+          const res = await axios.get('/read-cookie');
+          
+          if (res.data.screen !== undefined) {
+            setScreen(res.data.screen);
+          }
+        } catch (e) {
+          setScreen('auth');
+          console.log(e);
+        }
+      };
+    
+      useEffect(() => {
+        readCookie();
+      }, []);
+    
 
     return (
         <>
-
-            <form className="user-form" id='login' onSubmit={handleSubmit} >
+        {screen === 'auth'}?
+            <form className="user-form" id='login' onSubmit={auth} >
                 <label htmlFor="login">Username:
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </label>
@@ -89,6 +97,7 @@ const UserForm = () => {
                 </div>
                 <Link></Link>
             </form>
+            : <LogIn screen={screen} setScreen={setScreen} />
         </>)
 }
 
