@@ -28,12 +28,12 @@ class Navbar extends Component {
             <NavLink to="/calculator" activeStyle>
               Fitness Calculator
             </NavLink>
-            {/* <NavLink to="/stopwatch" activeStyle>
+            <NavLink to="/stopwatch" activeStyle>
               Stopwatch Timer
-            </NavLink> */}
-            {/* <NavLink to="/calenders" activeStyle> */}
-            {/* Sweat Calendar */}
-            {/* </NavLink> */}
+            </NavLink>
+            <NavLink to="/calenders" activeStyle>
+              Sweat Calendar
+            </NavLink>
             <>
               <NavLink to="/">
                 <WebsiteName>
