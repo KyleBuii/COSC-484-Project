@@ -1,50 +1,61 @@
-
 import { Component } from "react";
-import {GiGymBag} from "react-icons/gi"
+import { GiGymBag } from "react-icons/gi";
 import {
-    Nav,
-    NavBtn,
-    NavBtnLink,
-    NavMenu,
-    Bars,
-    NavLink,
-    NavAuth,
-    WebsiteName,
+  Nav,
+  NavBtn,
+  NavBtnLink,
+  NavMenu,
+  Bars,
+  NavLink,
+  NavAuth,
+  WebsiteName,
 } from "./navcomponents";
-import { Link } from "react-router-dom";
 
 class Navbar extends Component {
-    render() {
-        return (
+  render() {
+    return (
+      <>
+        <Nav>
+          <Bars />
+
+          <NavMenu>
+            <NavLink to="/personalgoals" activeStyle>
+              Personal Goals
+            </NavLink>
+            <NavLink to="/suggestion" activeStyle>
+              Suggestion
+            </NavLink>
+            <NavLink to="/calculator" activeStyle>
+              Fitness Calculator
+            </NavLink>
+            <NavLink to="/stopwatch" activeStyle>
+              Stopwatch Timer
+            </NavLink>
+            {/* <NavLink to="/calenders" activeStyle> */}
+            {/* Sweat Calendar */}
+            {/* </NavLink> */}
             <>
-                <Nav>
-                    <Bars />
-                    
-                    <NavMenu>
-                        <NavLink to="/personalgoals" activeStyle>Personal Goals</NavLink>
-                        <NavLink to="/suggestion" activeStyle>Suggestion</NavLink>
-                        <NavLink to="/calculator" activeStyle>Fitness Calculator</NavLink>
-                        <NavLink to="/stopwatch" activeStyle>Stopwatch Timer</NavLink>
-                        <NavLink to="/sweatcalendar" activeStyle>Sweat Calendar</NavLink>
-                        <NavLink to="/"><GiGymBag/><WebsiteName>MyFitnessJournal</WebsiteName></NavLink>
-                    </NavMenu>
-
-                    <NavAuth>
-                    <NavBtn>
-                        <NavBtnLink to="/login">Log In</NavBtnLink>
-                    </NavBtn>
-
-                    <NavBtn>
-                        <NavBtnLink to="/signin">Sign In</NavBtnLink>
-                    </NavBtn>
-                    </NavAuth>
-                </Nav>
+              <NavLink to="/">
+                <WebsiteName>
+                  MyFitnessJournal <GiGymBag />
+                </WebsiteName>
+              </NavLink>
             </>
-        )
-    }
+          </NavMenu>
 
+          <NavAuth>
+            <NavBtn>
+              <NavBtnLink to="/login">Log In</NavBtnLink>
+            </NavBtn>
+
+            <NavBtn>
+              <NavBtnLink to="/signin">Sign In</NavBtnLink>
+            </NavBtn>
+          </NavAuth>
+        </Nav>
+      </>
+    );
+  }
 }
-
-
 
 export default Navbar;

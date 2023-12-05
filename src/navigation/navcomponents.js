@@ -87,4 +87,6 @@ export const NavBtnLink = styled(Link)`
 
 export const WebsiteName = styled.h1`
   color: white;
+  display: inline;
+  margin: auto;
 `;
