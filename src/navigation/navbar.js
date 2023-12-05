@@ -10,7 +10,6 @@ import {
   NavAuth,
   WebsiteName,
 } from "./navcomponents";
-import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   render() {
