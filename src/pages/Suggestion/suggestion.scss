@@ -6,6 +6,7 @@
 .label-and-input{
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .btn-inverse{
@@ -13,6 +14,11 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+.btn-search{
+    padding: 0;
+    height: 2em;
 }
 
 .search-bar{
@@ -23,10 +29,12 @@
     justify-content: center;
     margin: 2em 0em 1em;
     input{
+        margin: 0;
         border: 1px solid rgb(89, 111, 98);
     }
     label{
         color: white;
+        margin-right: 0.2rem;
     }
     select{
         width: 100%;
