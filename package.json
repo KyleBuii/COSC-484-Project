@@ -11,7 +11,10 @@
     "axios": "^1.6.2",
     "dotenv": "^16.3.1",
     "express-basic-auth": "^1.2.1",
+    "mongodb": "^6.3.0",
+    "nvm": "^0.0.4",
     "outlet": "^0.1.5",
+    "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
@@ -21,6 +24,7 @@
     "sass": "^1.69.5",
     "styled-component": "^2.8.0",
     "styled-components": "^6.1.0",
+    "vercel": "^32.6.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
