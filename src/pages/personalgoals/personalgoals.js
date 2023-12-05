@@ -123,7 +123,7 @@ function Personalgoals() {
         <h1 className="mainHeader">Personal Goals:</h1>
         <form onSubmit={createGoal} className="newGoalForm">
           <div className="formRow">
-            <label htmlFor="goalName">Name</label>
+            <label htmlFor="goalName">Goal Name</label>
             <input
               value={newGoalName}
               onChange={(e) => setName(e.target.value)}
