@@ -24,9 +24,6 @@ class Navbar extends Component {
                         <NavLink to="/personalgoals" activeStyle>Personal Goals</NavLink>
                         <NavLink to="/suggestion" activeStyle>Suggestion</NavLink>
                         <NavLink to="/calculator" activeStyle>Fitness Calculator</NavLink>
-                        <NavLink to="/app" activeStyle>Tests</NavLink>
-                        {/* Delete me */}
-                        {/* <NavLink to="/chicken" activeStyle>chicken</NavLink> */}
                         <NavLink to="/"><GiGymBag/></NavLink>
                     </NavMenu>
 

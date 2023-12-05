@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {Link} from 'react-router-dom';
 import { MdTextsms } from "react-icons/md";
 import {HiMail} from 'react-icons/hi'
-import {MongoClient, ObjectId} from 'mongodb'
+// import {MongoClient} from 'mongodb'
 import './user.scss'
 
 const LogIn = () => {
@@ -14,18 +14,18 @@ const LogIn = () => {
         </>
     )
 }
-const mongoClient = new MongoClient(
-    'mongodb+srv://eguzmandls:qivPxBAySCsC7hZx@mfj.fst9gm9.mongodb.net/?retryWrites=true&w=majority'
-)
+// const mongoClient = new MongoClient(
+//     'mongodb+srv://eguzmandls:qivPxBAySCsC7hZx@mfj.fst9gm9.mongodb.net/?retryWrites=true&w=majority'
+// )
 
 
-const data = await mongoClient
-    .db()
-    .collection('mfjuser')
-    .find()
-    .toArray()
+// const data = await mongoClient
+//     .db()
+//     .collection('mfjuser')
+//     .find()
+//     .toArray()
     
-    console.log(data)
+//     console.log(data)
 
 const UserForm = () =>{
     
