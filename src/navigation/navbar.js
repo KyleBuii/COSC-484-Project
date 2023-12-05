@@ -26,7 +26,7 @@ class Navbar extends Component {
                         <NavLink to="/calculator" activeStyle>Fitness Calculator</NavLink>
                         <NavLink to="/app" activeStyle>Tests</NavLink>
                         {/* Delete me */}
-                        <NavLink to="/chicken" activeStyle>chicken</NavLink>
+                        {/* <NavLink to="/chicken" activeStyle>chicken</NavLink> */}
                         <NavLink to="/"><GiGymBag/></NavLink>
                     </NavMenu>
 

@@ -16,7 +16,7 @@ const LogIn = () => {
 
 const UserForm = () =>{
     
-const [user, setUser] = useState('');
+const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 //Testing variables
 const [counter, setCounter] = useState(0)
@@ -24,7 +24,7 @@ axios.defaults.withCredentials= true;
 
 const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('https://mfjserver.vercel.app/register', {username, email, password})
+    axios.post('https://mfjserver.vercel.app/register', {username, password})
     .then(result => console.log(result))
     .catch(err => console.log(err))
 }
@@ -51,7 +51,7 @@ const getData = async (event) =>{
     try {
         const res = await axios.get('/get-data');
         console.log(res.data)
-        setUser(res.data)
+        setUsername(res.data)
     }catch(e){
         console.log(e)
     }
@@ -63,12 +63,12 @@ const getData = async (event) =>{
     Counter<br/>
     <label>{counter}</label>
     User<br/>
-    <label>{user.data}</label>
+    <label>{username.data}</label>
 
 
     <form className="user-form" id='login' onSubmit={handleSubmit} >
     <label htmlFor="login">Username:
-    <input type="text" value={user} onChange={(e) =>setUser(e.target.value)}/>
+    <input type="text" value={username} onChange={(e) =>setUsername(e.target.value)}/>
     </label>
     <label htmlFor="login">Password:
     <input type="password" value={password} onChange={(e) =>setPassword(e.target.value)}/><br/>
