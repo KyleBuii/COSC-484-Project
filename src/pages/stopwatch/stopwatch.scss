@@ -1,72 +1,71 @@
-// body {
-//   background-color: #1c3144;
-//   color: #000000;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100vh;
-//   margin: 0;
-// }
+$primaryColor: #3498db;
+$backgroundColor: #7ea16b;
 
-// .container {
-//   display: flex;
-//   justify-content: space-around;
-// }
+.stopwatch-timer {
+  background-color: $backgroundColor; // Set background color here
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  text-align: center;
 
-// p {
-//   font-size: 3em;
-//   margin: 0;
-// }
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 8px;
+    color: white; // Use primary color for h2
+    font-family: "Times New Roman", Times, serif;
+  }
 
-// button{
-//   font-size: 1em;
-//   margin: 10px;
-//   padding: 8px 16px;
-//   cursor: pointer;
-//   background-color: #3498db;
-//   color: #fff;
-//   border: none;
-//   border-radius: 4px;
-//   transition: background-color 0.3s ease;
+  p {
+    font-size: 2em;
+    margin: 8px 0;
+    color: #333; // Default text color
+  }
 
-//   &:hover {
-//     background-color: #2180b9;
-//   }
-// }
+  button {
+    font-size: 1em;
+    padding: 8px 16px;
+    margin: 4px;
+    cursor: pointer;
+    background-color: $primaryColor; // Use primary color for button background
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    outline: none;
 
-// input {
-//   font-size: 1em;
-//   margin-right: 5px;
-//   padding: 8px;
-//   width: 80px;
-//   border: 1px solid rgb(89, 111, 98);
-// }
+    &:hover {
+      background-color: darken(
+        $primaryColor,
+        10%
+      ); // Darken primary color on hover
+    }
 
-// select {
-//   width: 100%;
-//   padding: 10px;
-//   margin-bottom: 10px;
-//   border: 1px solid #ccc;
-//   border-radius: 5px;
-//   background-color: white;
-// }
+    &:active {
+      background-color: darken($primaryColor, 20%); // Darken more on active
+    }
+  }
 
-// .stopwatch-timer {
-//   text-align: center;
-//   padding: 20px;
-//   border: 2px solid #3498db;
-//   border-radius: 8px;
-//   margin: 10px;
-//   background-color: #7EA16B;
+  input {
+    font-size: 1em;
+    padding: 8px;
+    margin: 4px;
+    width: 80px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 
-//   h2 {
-//     font-size: 1.5em;
-//     margin-bottom: 10px;
-//     color: #61dafb;
-//   }
+  ul {
+    list-style-type: none;
+    padding: 0;
 
-//   input,
-//   button {
-//     color: #fff;
-//   }
-// }
+    li {
+      font-size: 1em;
+      margin: 8px 0;
+    }
+  }
+}
+
+#timer-text {
+  transition: color 0.5s; // Add transition for color change
+}
