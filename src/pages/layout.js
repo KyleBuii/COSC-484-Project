@@ -19,7 +19,10 @@ function Layout() {
                         <Route path="/suggestion" element={<Suggestion></Suggestion>}></Route>
                         <Route path="/personalgoals" element={<Personalgoals></Personalgoals>}></Route>
                         <Route path="/calculator" element={<Calculator></Calculator>}></Route>
+                        <Route path="/app" element={<App></App>}></Route>
 
+                        {/* Delete me */}
+                        {/* <Route path="/chicken" element={<UserForm></UserForm>}></Route> */}
                         
                         <Route path="/login" element={<LogIn></LogIn>}></Route>
                         <Route path="/signin" element={<SignIn></SignIn>}></Route>
@@ -31,4 +34,4 @@ function Layout() {
     )
 }
 
-export default Layout
+export default Layout;
