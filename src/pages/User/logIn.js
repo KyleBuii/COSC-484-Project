@@ -24,7 +24,7 @@ axios.defaults.withCredentials= true;
 
 const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('https://mfjserver.vercel.app/register', {username, password})
+    axios.post('https://mfjserver.vercel.app/authenticate', {username, password})
     .then(result => console.log(result))
     .catch(err => console.log(err))
     
