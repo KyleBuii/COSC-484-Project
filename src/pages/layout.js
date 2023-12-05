@@ -21,7 +21,7 @@ function Layout() {
                         <Route path="/personalgoals" element={<Personalgoals></Personalgoals>}></Route>
                         <Route path="/calculator" element={<Calculator></Calculator>}></Route>
                         <Route path="/stopwatch" element={<StopwatchTimer></StopwatchTimer>}></Route>
-                        <Route path="/sweatcalendar" element={<Apps></Apps>}></Route>
+                        <Route path="/calendar" element={<Apps></Apps>}></Route>
 
                         
                         <Route path="/login" element={<LogIn></LogIn>}></Route>

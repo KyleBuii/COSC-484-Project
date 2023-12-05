@@ -25,7 +25,7 @@ class Navbar extends Component {
                         <NavLink to="/suggestion" activeStyle>Suggestion</NavLink>
                         <NavLink to="/calculator" activeStyle>Fitness Calculator</NavLink>
                         <NavLink to="/stopwatch" activeStyle>Stopwatch Timer</NavLink>
-                        <NavLink to="/sweatcalendar" activeStyle>Sweat Calendar</NavLink>
+                        <NavLink to="/calendar" activeStyle>Calendar</NavLink>
                         <><NavLink to="/"><WebsiteName>MyFitnessJournal <GiGymBag/></WebsiteName></NavLink></>
                     </NavMenu>
 
