@@ -29,21 +29,6 @@ const handleSubmit = (e) =>{
     .catch(err => console.log(err))
 }
 
-const auth = async() =>{
-    this.preventDefault();
-    try{
-        const res = await axios.get('/authenticate', {auth : {username: 'admin', password: '123' }})
-        console.log(res.data)
-        console.log("success")
-    }catch(e){
-        
-        setTimeout(function(){
-            console.log("auth error:")
-        console.log(e)
-        }, 6000)
-    }
-}
-
 
 const getData = async (event) =>{
     event.preventDefault()
