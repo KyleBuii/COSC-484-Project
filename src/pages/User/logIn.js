@@ -24,24 +24,12 @@ axios.defaults.withCredentials= true;
 
 const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('https://mfjserver.vercel.app/authenticate', {username, password})
+    axios.post('https://mfjserver.vercel.app/authenticate', {username:username, password:password})
     .then(result => console.log(result))
     .catch(err => console.log(err))
     
 }
 
-
-const getData = async (event) =>{
-    event.preventDefault()
-    setCounter(counter+1)
-    try {
-        const res = await axios.get('/get-data');
-        console.log(res.data)
-        setUsername(res.data)
-    }catch(e){
-        console.log(e)
-    }
-}
 
 
     return(
