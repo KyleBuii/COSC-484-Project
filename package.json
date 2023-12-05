@@ -16,6 +16,8 @@
     "outlet": "^0.1.5",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.8.5",
+    "react-datepicker": "^4.24.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-responsive-carousel": "^3.2.23",
