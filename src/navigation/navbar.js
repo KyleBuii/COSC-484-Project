@@ -19,12 +19,14 @@ class Navbar extends Component {
             <>
                 <Nav>
                     <Bars />
-                    <WebsiteName>MyFitnessJournal</WebsiteName>
+                    
                     <NavMenu>
                         <NavLink to="/personalgoals" activeStyle>Personal Goals</NavLink>
                         <NavLink to="/suggestion" activeStyle>Suggestion</NavLink>
                         <NavLink to="/calculator" activeStyle>Fitness Calculator</NavLink>
-                        <NavLink to="/"><GiGymBag/></NavLink>
+                        <NavLink to="/stopwatch" activeStyle>Stopwatch Timer</NavLink>
+                        <NavLink to="/sweatcalendar" activeStyle>Sweat Calendar</NavLink>
+                        <NavLink to="/"><GiGymBag/><WebsiteName>MyFitnessJournal</WebsiteName></NavLink>
                     </NavMenu>
 
                     <NavAuth>

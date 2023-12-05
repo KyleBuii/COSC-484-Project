@@ -6,6 +6,8 @@ import Home from "./home"
 import Calculator from './Calculator/Calculator'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Navbar from '../navigation/navbar'
+import StopwatchTimer from "./stopwatch/stopwatch"
+import Apps from "./Calenders/Apps"
 // import UserForm from "../api/mfsclient"
 
 function Layout() {
@@ -19,6 +21,8 @@ function Layout() {
                         <Route path="/suggestion" element={<Suggestion></Suggestion>}></Route>
                         <Route path="/personalgoals" element={<Personalgoals></Personalgoals>}></Route>
                         <Route path="/calculator" element={<Calculator></Calculator>}></Route>
+                        <Route path="/stopwatch" element={<StopwatchTimer></StopwatchTimer>}></Route>
+                        <Route path="/sweatcalendar" element={<Apps></Apps>}></Route>
 
                         
                         <Route path="/login" element={<LogIn></LogIn>}></Route>
