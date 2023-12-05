@@ -5,6 +5,11 @@ import { MdTextsms } from "react-icons/md";
 import {HiMail} from 'react-icons/hi'
 import '../pages/User/user.scss'
 
+const [username, setUsername] = useState()
+const [email, setEmail] = useState()
+const [password, setPassword] = useState()
+axios.defaults.withCredentials= true;
+
 const handleSubmit = (e) =>{
     e.preventDefault()
     axios.post('https://mfjserver.vercel.app/register', {username, email, password})
@@ -12,10 +17,7 @@ const handleSubmit = (e) =>{
     .catch(err => console.log(err))
 }
 const UserForm = () =>{
-    const [username, setUsername] = useState()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    axios.defaults.withCredentials= true;
+  
 
 
 
@@ -56,12 +58,12 @@ const UserForm = () =>{
         Counter<br/>
         <label>{counter}</label>
         User<br/>
-        <label>{user.data}</label>
+        <label>{username.data}</label>
     
     
         <form className="user-form" id='login' onSubmit={handleSubmit}>
         <label htmlFor="login">Username:
-        <input type="text" value={user} onChange={(e) =>setUsername(e.target.value)}/>
+        <input type="text" value={username} onChange={(e) =>setUsername(e.target.value)}/>
         </label>
         <label htmlFor="login">Password:
         <input type="password" value={password} onChange={(e) =>setPassword(e.target.value)}/><br/>
