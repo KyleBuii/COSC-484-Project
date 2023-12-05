@@ -5,27 +5,21 @@ import { MdTextsms } from "react-icons/md";
 import {HiMail} from 'react-icons/hi'
 import '../pages/User/user.scss'
 
-function MFSClient(){
-    const [name, setName] = useState()
+
+const UserForm = () =>{
+    const [username, setUsername] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     axios.defaults.withCredentials= true;
     const handleSubmit = (e) =>{
         e.preventDefault()
-        axios.post('https://mfjserver.vercel.app/register', {name, email, password})
+        axios.post('https://mfjserver.vercel.app/register', {username, email, password})
         .then(result => console.log(result))
         .catch(err => console.log(err))
     }
 
-   
-        
-        
+
     
-}
-const UserForm = () =>{
-    
-    const [user, setUser] = useState('');
-    const [password, setPassword] = useState('');
     //Testing variables
     const [counter, setCounter] = useState(0)
     const auth = async() =>{
@@ -67,7 +61,7 @@ const UserForm = () =>{
     
         <form className="user-form" id='login' onSubmit={handleSubmit}>
         <label htmlFor="login">Username:
-        <input type="text" value={user} onChange={(e) =>setUser(e.target.value)}/>
+        <input type="text" value={user} onChange={(e) =>setUsername(e.target.value)}/>
         </label>
         <label htmlFor="login">Password:
         <input type="password" value={password} onChange={(e) =>setPassword(e.target.value)}/><br/>
