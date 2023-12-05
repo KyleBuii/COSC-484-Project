@@ -22,10 +22,10 @@ function Layout() {
             element={<Personalgoals></Personalgoals>}
           ></Route>
           <Route path="/calculator" element={<Calculator></Calculator>}></Route>
-          <Route
+          {/* <Route
             path="/stopwatch"
             element={<StopwatchTimer></StopwatchTimer>}
-          ></Route>
+          ></Route> */}
           {/* <Route path="/calenders" element={<Apps></Apps>}></Route> */}
 
           <Route path="/login" element={<LogIn></LogIn>}></Route>
